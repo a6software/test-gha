@@ -32,3 +32,9 @@ jobs:
       - name: another try
         shell: bash
         run: echo "${GITHUB_BASE_REF}"
+
+      - name: Step that prints name of pull request's base branch
+        run: |
+          echo "Pull request's base branch is: ${BASE_BRANCH}"
+        env:
+          BASE_BRANCH: ${{ github.base_ref }}
