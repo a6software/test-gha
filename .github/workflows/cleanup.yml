@@ -31,4 +31,4 @@ jobs:
 
       - name: another try
         shell: bash
-        run: echo "${{ github.base_ref }}"
+        run: echo "${GITHUB_BASE_REF}"
