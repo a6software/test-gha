@@ -10,8 +10,6 @@ jobs:
   cleanup:
     name: Remove branch Lambda
 
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-
     runs-on: ubuntu-latest
 
     steps:
@@ -30,3 +28,7 @@ jobs:
       - name: echo dammit
         shell: bash
         run: echo "${BRANCH_NAME}"
+
+      - name: another try
+        shell: bash
+        run: echo ${{ github.base_ref }}
