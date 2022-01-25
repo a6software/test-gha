@@ -28,3 +28,7 @@ jobs:
       - name: echo dammit
         shell: bash
         run: echo "${BRANCH_NAME}"
+
+      - name: another try
+        shell: bash
+        run: echo ${{ github.base_ref }}
