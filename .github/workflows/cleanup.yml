@@ -1,4 +1,4 @@
-name: Cleanup
+name: Cleanup orig
 
 on: delete
 
