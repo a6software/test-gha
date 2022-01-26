@@ -1,4 +1,4 @@
-name: Cleanup orig
+name: Cleanup
 
 on: delete
 
@@ -9,6 +9,8 @@ defaults:
 jobs:
   cleanup:
     name: Remove branch Lambda
+
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
 
     runs-on: ubuntu-latest
 
@@ -25,16 +27,10 @@ jobs:
         shell: bash
         run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
 
-      - name: echo dammit
+      - name: Get PR number
         shell: bash
-        run: echo "${BRANCH_NAME}"
+        run: echo "PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')" >> $GITHUB_ENV
 
-      - name: another try
-        shell: bash
-        run: echo "${GITHUB_BASE_REF}"
-
-      - name: Step that prints name of pull request's base branch
+      - name: Step that prints name of pull request number
         run: |
-          echo "Pull request's base branch is: ${BASE_BRANCH}"
-        env:
-          BASE_BRANCH: ${{ github.event.ref }}
+          echo "Pull request's base branch is: ${PR_NUMBER}"
