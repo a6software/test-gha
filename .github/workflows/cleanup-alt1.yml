@@ -12,6 +12,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      PR_NUMBER: ${{ github.event.number }}
+
     steps:
       - uses: actions/checkout@v2
 
@@ -24,10 +27,6 @@ jobs:
         if: github.event_name == 'pull_request'
         shell: bash
         run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
-
-      - name: Get PR number
-        shell: bash
-        run: echo "PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')" >> $GITHUB_ENV
 
       - name: Step that prints name of pull request number
         run: |
