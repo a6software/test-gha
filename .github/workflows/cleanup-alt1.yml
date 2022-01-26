@@ -28,6 +28,6 @@ jobs:
         shell: bash
         run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
 
-      - name: Step that prints name of pull request number
+      - name: Step that prints name of pull request number 111
         run: |
           echo "Pull request's base branch is: ${PR_NUMBER}"
